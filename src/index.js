@@ -22,13 +22,13 @@ const store = createStore(mainReducer, enhancer);
 sagaMiddleware.run(saga);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <UserProvider>
         <App />
       </UserProvider> 
     </BrowserRouter>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
