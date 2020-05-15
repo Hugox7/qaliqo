@@ -11,7 +11,8 @@ class UserProvider extends React.Component {
 
     componentDidMount = async () => {
         auth.onAuthStateChanged(async userAuth => {
-            this.setState({ user: getUserDocument(userAuth) });
+            console.log('user ', userAuth)
+            this.setState({ user: await getUserDocument(userAuth) });
         })
     }
 

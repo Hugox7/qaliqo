@@ -8,8 +8,10 @@ import mainReducer from './store/reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import saga from './store/sagas';
+//import saga from './store/sagas';
 import UserProvider from './providers/userProvider';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './config/muiTheme';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,13 +21,15 @@ const enhancer = composeEnhancers(
 );
 const store = createStore(mainReducer, enhancer);
 
-sagaMiddleware.run(saga);
+//sagaMiddleware.run(saga);
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </UserProvider> 
     </BrowserRouter>
   </Provider>,

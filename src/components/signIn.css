@@ -1,0 +1,64 @@
+#sign-in {
+    height: 100%;
+    background: url("../assets/wallpaper.jpg");
+    min-height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sign-in-content {
+    padding: 40px 30px;
+    height: 500px;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px lightgray; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sign-in-content h2 {
+    margin: 10px 0;
+    text-align: center;
+}
+
+#sign-in-content p {
+    margin: 10px 0;
+    text-align: center;
+}
+
+#form-part {
+    margin-top: 30px;
+    width: 90%;
+}
+
+#sign-in .MuiFormControl-root {
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+}
+
+#sign-in .MuiFormHelperText-root {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -35px;
+}
+
+#sign-in .MuiButtonBase-root {
+    background: linear-gradient(to right, #FFD17C, #E7647E);
+    font-weight: bold;
+}
+
+#no-account {
+    margin-top: 70px;
+}
+
+#no-account p {
+    font-size: 15px;
+    line-height: 1.4;
+}

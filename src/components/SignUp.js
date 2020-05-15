@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
-import { signIn } from '../config/firebase';
+import { signUp } from '../config/firebase';
 
-import './signIn.css';
+import './signUp.css';
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
 
     state = {
         username: '',
@@ -20,26 +20,38 @@ class SignIn extends React.Component {
     }
 
     handleSubmit = async (e) => {
+        const {email, username, password} = this.state;
         e.preventDefault();
         this.setState({ loading: true });
-        await signIn(this.state.email, this.state.password);
+        await signUp(email, password, username, this.props.history);
+        
     }
 
     render() {
+
         return (
-            <div id='sign-in'>
-                <div id='sign-in-content'>
-                    <h2>Ma tissuthèque virtuelle</h2>
-                    <p>Gérez vos stocks de tissus et d'accessoires, créez des projets, et partagez-les avec vos amis !</p>
+            <div id='sign-up'>
+                <div id='sign-up-content'>
+                    <p>Créez votre compte gratuitement</p>
                     <div id='form-part'>
                         <ValidatorForm
                             onSubmit={this.handleSubmit}
                         >
                             <TextValidator 
                                 onChange={this.handleChange}
+                                type='text' 
+                                size='small'
+                                label="Nom d'utilisateur"
+                                name='username'
+                                value={this.state.username}
+                                validators={['required']}
+                                errorMessages={['Champ requis']}
+                            />
+                            <TextValidator 
+                                onChange={this.handleChange}
                                 type='email' 
                                 size='small'
-                                label='Votre adresse email'
+                                label='Adresse email'
                                 name='email'
                                 value={this.state.email}
                                 validators={['required', 'isEmail']}
@@ -49,7 +61,7 @@ class SignIn extends React.Component {
                                 onChange={this.handleChange}
                                 type='password' 
                                 size='small'
-                                label='Votre mot de passe'
+                                label='Mot de passe'
                                 name='password'
                                 value={this.state.password}
                                 validators={['required']}
@@ -62,14 +74,12 @@ class SignIn extends React.Component {
                                 style={{ marginTop: '60px', borderRadius: '20px', width: '100%' }}
                                 disabled={this.state.loading}
                             >
-                                Connection
+                                Créez votre compte
                             </Button>
                         </ValidatorForm>
-                        <div id="no-account">
+                        <div id="has-account">
                         <p style={{ textAlign: 'center' }}>
-                            Vous n'avez pas de compte ? <Link to="/sign-up">Créez votre compte ici</Link>
-                            <br />
-                            <Link to="/password-reset">Mot de passe oublié?</Link>
+                            Vous avez déjà un compte ? <Link to='/'>Connectez-vous ici</Link>
                         </p>
                         </div>  
                     </div>
@@ -79,4 +89,4 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+export default SignUp
