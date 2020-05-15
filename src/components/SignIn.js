@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
 import { signIn } from '../config/firebase';
+import { connect } from 'react-redux';
+import * as errorTypes from '../store/types/error';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import './signIn.css';
 
@@ -20,21 +23,31 @@ class SignIn extends React.Component {
     }
 
     handleSubmit = async (e) => {
+        const { handleLoginError } = this.props;
         e.preventDefault();
         this.setState({ loading: true });
-        await signIn(this.state.email, this.state.password);
+        await signIn(this.state.email, this.state.password, handleLoginError);
+        this.setState({ loading: false });
     }
 
     render() {
+        console.log(this.props);
         return (
             <div id='sign-in'>
                 <div id='sign-in-content'>
-                    <h2>Ma tissuthèque virtuelle</h2>
+                    <h2>Qaliqo</h2>
                     <p>Gérez vos stocks de tissus et d'accessoires, créez des projets, et partagez-les avec vos amis !</p>
                     <div id='form-part'>
                         <ValidatorForm
                             onSubmit={this.handleSubmit}
                         >
+                            <div className='alert-part'>
+                                {this.props.loginError &&
+                                    <Alert onClose={() => this.props.handleLoginError(null)} severity="error">
+                                        L'utilisateur n'existe pas ou le mot de passe est incorrect 
+                                    </Alert>
+                                }
+                            </div>
                             <TextValidator 
                                 onChange={this.handleChange}
                                 type='email' 
@@ -79,4 +92,16 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapStateToProps = state => ({
+    loginError: state.error.handleError.loginError,
+  });
+
+const mapDispatchToProps = (dispatch) => ({
+    handleLoginError: (data) => {
+        dispatch({ type: errorTypes.SET_LOGIN_ERROR, data })
+    }, 
+});
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

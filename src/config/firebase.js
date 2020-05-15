@@ -70,7 +70,6 @@ const updateDisplayName = async (displayName) => {
     } catch (error) {
         console.log(error);
     }
-    
 }
 
 //sign up
@@ -85,10 +84,11 @@ export const signUp = async (email, password, displayName, history) => {
 }
 
 //sign in
-export const signIn = async (email, password) => {
+export const signIn = async (email, password, setError) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
+        setError(error);
     }
 }
