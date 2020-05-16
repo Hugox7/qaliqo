@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Alert } from '@material-ui/lab';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { Link } from 'react-router-dom';
 
 
 import './passwordReset.css';
@@ -84,7 +85,9 @@ class PasswordReset extends React.Component {
                             </Button>
                         </ValidatorForm>
                     </div>
-                    
+                    <div id='back'>
+                        <Link to='/'>En fait je m'en souviens</Link>
+                    </div>
                 </div>
             </div>
         );
