@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,15 @@ class SignUp extends React.Component {
         loading: false,
     }
 
+    componentDidUpdate = (prevProps, prevState) => {
+        if (!prevState.loading && this.state.loading) {
+            ReactDOM.findDOMNode(this.loadingRef).style.visibility='visible';
+        }
+        if (prevState.loading && !this.state.loading) {
+            ReactDOM.findDOMNode(this.loadingRef).style.visibility='hidden';
+        }
+    }
+
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }
@@ -25,6 +35,7 @@ class SignUp extends React.Component {
         e.preventDefault();
         this.setState({ loading: true });
         await signUp(email, password, username, this.props.history);
+        this.setState({ loading: false });
         
     }
 
@@ -33,7 +44,7 @@ class SignUp extends React.Component {
         return (
             <div id='sign-up'>
                 <div id='sign-up-content'>
-                    <div id='loading-div'>
+                    <div id='loading-sign-up' ref={node => this.loadingRef = node}>
                        <CircularProgress color='primary' /> 
                     </div>
                     <p>Créez votre compte gratuitement</p>

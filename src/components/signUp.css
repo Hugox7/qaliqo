@@ -55,8 +55,8 @@
     line-height: 1.4;
 }
 
-#loading-div {
-    /* visibility: hidden; */
+#loading-sign-up {
+    visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
