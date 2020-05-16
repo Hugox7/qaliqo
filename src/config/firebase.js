@@ -52,7 +52,7 @@ export const getUserDocument = async (user) => {
     try {
         const userDocument = await firestore.doc(`users/${user.uid}`).get();
         return {
-            uid: user.uid,
+            //uid: user.uid,
             ...userDocument.data(),
         }
     } catch (error) {
@@ -87,8 +87,20 @@ export const signUp = async (email, password, displayName, history) => {
 export const signIn = async (email, password, setError) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
+        setError(null);
     } catch (error) {
         console.log(error.message);
         setError(error);
+    }
+}
+
+// reset password
+export const resetPassword = async (email, setEmailHasBeenSent, setError) => {
+    try {
+        await auth.sendPasswordResetEmail(email);
+        setEmailHasBeenSent(true);
+    } catch (error) {
+        console.log(error);
+        setError("Erreur lors de l'envoi du mail. Merci de réessayer ultérieurement.");
     }
 }

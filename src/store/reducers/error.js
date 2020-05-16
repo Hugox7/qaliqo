@@ -3,6 +3,7 @@ import * as errorTypes from '../types/error';
 
 const errorInitState = {
     loginError: null,
+    resetPasswordError: null,
 }
 
 const handleError = (state = errorInitState, action) => {
@@ -12,6 +13,11 @@ const handleError = (state = errorInitState, action) => {
                 ...state,
                 loginError: action.data,
                 
+            };
+        case errorTypes.SET_RESET_PASSWORD_ERROR:
+            return {
+                ...state,
+                resetPasswordError: action.data,
             };
         default:
             return state;

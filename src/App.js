@@ -7,6 +7,7 @@ import { UserContext } from './providers/userProvider';
 import { auth } from './config/firebase';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import PasswordReset from './components/PasswordReset';
 
 const App = () => {
 
@@ -20,8 +21,8 @@ const App = () => {
   if (user) {
     return (
       <div className='app'>
-        hello
-        <Button onClick={disconnect}>Deconnection</Button>
+        <p>hello</p>
+        <Button color='primary' variant='contained' onClick={disconnect}>Deconnection</Button>
       </div>
     );
   } else {
@@ -30,6 +31,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={SignIn} />
           <Route path='/sign-up' component={SignUp} />
+          <Route path='/password-reset' component={PasswordReset} />
         </Switch>
       </div>
     );

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { signIn } from '../config/firebase';
 import { connect } from 'react-redux';
 import * as errorTypes from '../store/types/error';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Alert } from '@material-ui/lab';
 
 import './signIn.css';
 
@@ -31,11 +31,11 @@ class SignIn extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div id='sign-in'>
                 <div id='sign-in-content'>
-                    <h2>Qaliqo</h2>
+                    <h1>Qaliqo</h1>
+                    <h3>Ma tissuthèque virtuelle</h3>
                     <p>Gérez vos stocks de tissus et d'accessoires, créez des projets, et partagez-les avec vos amis !</p>
                     <div id='form-part'>
                         <ValidatorForm
