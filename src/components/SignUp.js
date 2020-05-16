@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
-import { signUp } from '../config/firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './signUp.css';
+import { signUp } from '../config/firebase';
 
 class SignUp extends React.Component {
 
@@ -32,6 +33,9 @@ class SignUp extends React.Component {
         return (
             <div id='sign-up'>
                 <div id='sign-up-content'>
+                    <div id='loading-div'>
+                       <CircularProgress color='primary' /> 
+                    </div>
                     <p>Créez votre compte gratuitement</p>
                     <div id='form-part'>
                         <ValidatorForm
