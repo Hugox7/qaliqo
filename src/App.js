@@ -22,6 +22,7 @@ const App = () => {
           path='/sign-in' 
           component={SignIn} 
         />
+        <Route path='*' component={() => '404 NOT FOUND'} />
       </Switch>
     </div>
   );
