@@ -1,2 +1,3 @@
 export const SET_LOGIN_ERROR = 'error/SET_LOGIN_ERROR';
+export const SET_SIGNUP_ERROR = 'error/SET_SIGNUP_ERROR';
 export const SET_RESET_PASSWORD_ERROR = 'error/SET_RESET_PASSWORD-ERROR';

@@ -73,12 +73,13 @@ const updateDisplayName = async (displayName) => {
 }
 
 //sign up
-export const signUp = async (email, password, displayName) => {
+export const signUp = async (email, password, displayName, setError) => {
     try {
         const userCreated = await auth.createUserWithEmailAndPassword(email, password);
         await generateUserDocument({ userCreated }, displayName);
     } catch (error) {
         console.log(error);
+        setError(error);
     }  
 }
 

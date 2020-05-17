@@ -22,11 +22,11 @@ const App = () => {
         />
         <PublicRoute
           path='/sign-in' 
-          component={SignIn} 
+          component={SignIn}
         />
         <PublicRoute
           path='/sign-up' 
-          component={SignUp} 
+          component={SignUp}
         />
         <PublicRoute
           path='/password-reset' 

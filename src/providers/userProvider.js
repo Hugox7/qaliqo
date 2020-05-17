@@ -9,6 +9,7 @@ class UserProvider extends React.Component {
         user: null,
         loading: true,
         authenticated: false,
+        error: null,
     }
 
     componentDidMount = async () => {
@@ -29,6 +30,9 @@ class UserProvider extends React.Component {
             })
         } catch (error) {
             console.log(error);
+            this.setState({
+                error,
+            });
         }
     }
 
