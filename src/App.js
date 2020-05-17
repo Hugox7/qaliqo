@@ -4,11 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 import './app.css';
 
 import SignIn from './components/SignIn';
-// import SignUp from './components/SignUp';
-// import PasswordReset from './components/PasswordReset';
+import SignUp from './components/SignUp';
+import PasswordReset from './components/PasswordReset';
 import Home from './components/Home';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
+import Page404 from './components/404';
+
 const App = () => {
 
   return (
@@ -22,7 +24,15 @@ const App = () => {
           path='/sign-in' 
           component={SignIn} 
         />
-        <Route path='*' component={() => '404 NOT FOUND'} />
+        <PublicRoute
+          path='/sign-up' 
+          component={SignUp} 
+        />
+        <PublicRoute
+          path='/password-reset' 
+          component={PasswordReset} 
+        />
+        <Route path='*' component={Page404} />
       </Switch>
     </div>
   );

@@ -45,7 +45,7 @@ class SignIn extends React.Component {
         const { handleLoginError } = this.props;
         e.preventDefault();
         this.setState({ loading: true });
-        await signIn(this.state.email, this.state.password, handleLoginError, this.props.history);
+        await signIn(this.state.email, this.state.password, handleLoginError);
         this.setState({ loading: false });
     }
 

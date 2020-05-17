@@ -73,22 +73,20 @@ const updateDisplayName = async (displayName) => {
 }
 
 //sign up
-export const signUp = async (email, password, displayName, history) => {
+export const signUp = async (email, password, displayName) => {
     try {
         const userCreated = await auth.createUserWithEmailAndPassword(email, password);
         await generateUserDocument({ userCreated }, displayName);
-        await history.push('/')
     } catch (error) {
         console.log(error);
     }  
 }
 
 //sign in
-export const signIn = async (email, password, setError, history) => {
+export const signIn = async (email, password, setError) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
         setError(null);
-        //history.push('/');
     } catch (error) {
         console.log(error.message);
         setError(error);

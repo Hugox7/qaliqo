@@ -11,9 +11,12 @@ class Home extends React.Component {
     }
 
     render() {
+
+        const { user } = this.props.context;
+
         return (
             <div>
-                <p>hello</p>
+                <p>hello {user.username}</p>
                 <Button color='primary' variant='contained' onClick={this.disconnect}>Deconnection</Button>
             </div>
         );
