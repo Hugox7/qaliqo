@@ -7,17 +7,40 @@ class UserProvider extends React.Component {
 
     state = {
         user: null,
+        loading: true,
+        authenticated: false,
     }
 
     componentDidMount = async () => {
-        auth.onAuthStateChanged(async userAuth => {
-            this.setState({ user: await getUserDocument(userAuth) }, () => console.log('user ', this.state.user));
-        })
+        try {
+            auth.onAuthStateChanged(async user => {
+                if (user) {
+                    this.setState({
+                        user: await getUserDocument(user),
+                        loading: false,
+                        authenticated: true,
+                    }, () => console.log(this.state));
+                } else {
+                    this.setState({
+                        loading: false,
+                        authenticated: false,
+                    }, () => console.log(this.state));
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevState.user && !this.state.user) {
+            this.setState({ authenticated: false });
+        }
     }
 
     render() {
         return (
-            <UserContext.Provider value={this.state.user}>
+            <UserContext.Provider value={this.state}>
                 {this.props.children}
             </UserContext.Provider>
         );

@@ -84,10 +84,11 @@ export const signUp = async (email, password, displayName, history) => {
 }
 
 //sign in
-export const signIn = async (email, password, setError) => {
+export const signIn = async (email, password, setError, history) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
         setError(null);
+        //history.push('/');
     } catch (error) {
         console.log(error.message);
         setError(error);

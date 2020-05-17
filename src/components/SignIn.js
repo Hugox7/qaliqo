@@ -8,10 +8,12 @@ import { connect } from 'react-redux';
 import * as errorTypes from '../store/types/error';
 import { Alert } from '@material-ui/lab';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { UserContext } from '../providers/userProvider';
 
 import './signIn.css';
 
 class SignIn extends React.Component {
+    static contextType = UserContext;
 
     state = {
         username: '',
@@ -21,12 +23,18 @@ class SignIn extends React.Component {
     }
 
     componentDidUpdate = (prevProps, prevState) => {
+
+        //const { context } = this;
+
         if (!prevState.loading && this.state.loading) {
             ReactDOM.findDOMNode(this.loadingRef).style.visibility='visible';
         }
         if (prevState.loading && !this.state.loading) {
             ReactDOM.findDOMNode(this.loadingRef).style.visibility='hidden';
         }
+
+
+        
     } 
 
     handleChange = (e) => {
@@ -37,7 +45,7 @@ class SignIn extends React.Component {
         const { handleLoginError } = this.props;
         e.preventDefault();
         this.setState({ loading: true });
-        await signIn(this.state.email, this.state.password, handleLoginError);
+        await signIn(this.state.email, this.state.password, handleLoginError, this.props.history);
         this.setState({ loading: false });
     }
 

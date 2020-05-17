@@ -25,12 +25,12 @@ const store = createStore(mainReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <UserProvider>
-        <ThemeProvider theme={theme}>
+    <BrowserRouter> 
+      <ThemeProvider theme={theme}>
+        <UserProvider>
           <App />
-        </ThemeProvider>
-      </UserProvider> 
+        </UserProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
