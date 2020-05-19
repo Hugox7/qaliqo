@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Alert } from '@material-ui/lab';
 
-
 import './signUp.css';
 import { signUp } from '../config/firebase';
 import * as errorTypes from '../store/types/error';
@@ -124,6 +123,5 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch({ type: errorTypes.SET_SIGNUP_ERROR, data })
     }, 
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

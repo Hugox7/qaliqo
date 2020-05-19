@@ -8,13 +8,11 @@ import { connect } from 'react-redux';
 import * as errorTypes from '../store/types/error';
 import { Alert } from '@material-ui/lab';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { UserContext } from '../providers/userProvider';
 
 import './signIn.css';
 
 class SignIn extends React.Component {
-    static contextType = UserContext;
-
+    
     state = {
         username: '',
         email: '',
@@ -24,17 +22,13 @@ class SignIn extends React.Component {
 
     componentDidUpdate = (prevProps, prevState) => {
 
-        //const { context } = this;
-
         if (!prevState.loading && this.state.loading) {
             ReactDOM.findDOMNode(this.loadingRef).style.visibility='visible';
         }
         if (prevState.loading && !this.state.loading) {
             ReactDOM.findDOMNode(this.loadingRef).style.visibility='hidden';
         }
-
-
-        
+ 
     } 
 
     handleChange = (e) => {
@@ -123,7 +117,5 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch({ type: errorTypes.SET_LOGIN_ERROR, data })
     }, 
 });
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

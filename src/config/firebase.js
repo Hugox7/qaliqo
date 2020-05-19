@@ -104,3 +104,48 @@ export const resetPassword = async (email, setEmailHasBeenSent, setError) => {
         setError("Erreur lors de l'envoi du mail. Merci de réessayer ultérieurement.");
     }
 }
+
+// upload profile pic 
+export const uploadProfilPic = async (image, user, setError, setSuccess, setListener, setProgress) => {
+    if (image) {
+        const uploadTask = storage.ref(`profilePics/${user.id}/${image.name}`).put(image);
+        const userRef = firestore.collection('users').doc(user.id);
+        const authUser = firebase.auth().currentUser;
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progress function
+                let percentage = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+                setProgress(percentage);
+            },
+            (error) => {
+                // error function
+                console.log(error);
+                setError(error);
+            },
+            (complete) => {
+                //complete function
+                storage.ref(`profilePics/${user.id}/${image.name}`).getDownloadURL()
+                    .then(url => {
+                        userRef.update({
+                            photo: url,
+                        })
+                        .then(() => {
+                            authUser.updateProfile({
+                                photoURL: url,
+                            }); 
+                        })
+                        .catch((error) => {
+                            setError(error);
+                        })
+                    })
+                    .then(() => {
+                        setSuccess('Photo de profil correctement modifiée');
+                        setListener(true);
+                        setTimeout(() => { setListener(false) }, 2000);
+                    })
+                    .catch((error) => setError(error));    
+            }
+        )
+    }
+}

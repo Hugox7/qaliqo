@@ -10,8 +10,10 @@ import Home from './components/Home';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 import Page404 from './components/404';
+import MyProfile from './components/MyProfile';
 
 const App = () => {
+  
 
   return (
     <div className='app'>
@@ -20,17 +22,21 @@ const App = () => {
           component={Home}
           exact path='/'
         />
+        <ProtectedRoute 
+          component={MyProfile}
+          path='/profile'
+        />
         <PublicRoute
-          path='/sign-in' 
+          path='/sign-in'
           component={SignIn}
         />
         <PublicRoute
-          path='/sign-up' 
+          path='/sign-up'
           component={SignUp}
         />
         <PublicRoute
-          path='/password-reset' 
-          component={PasswordReset} 
+          path='/password-reset'
+          component={PasswordReset}
         />
         <Route path='*' component={Page404} />
       </Switch>

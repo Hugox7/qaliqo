@@ -1,0 +1,61 @@
+#profile {
+    height: 100%;
+    background: linear-gradient(to bottom right, #F0E1CF, #F3BFB5 );
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.profile-content {
+    background-color: white;
+    min-height: 700px;
+    background-color: white;
+}
+
+#profile-header {
+    min-height: 60px;
+    padding: 5px 15px;
+    background-color: #E7647E; 
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile-header h5 {
+    font-size: 17px;
+    margin: 0;
+}
+
+#profile-header .MuiButtonBase-root {
+    color: white;
+    box-shadow: none;
+    border: 2px solid white;
+}
+
+#profile-header .MuiButtonBase-root:hover {
+    background-color: white;
+    color: #E7647E;
+}
+
+.content-part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.subpart {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.MuiLinearProgress-root {
+    width: 100px;
+    height: 10px;
+    margin-top: 3px;
+}

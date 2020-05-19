@@ -1,11 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 import { auth } from '../config/firebase';
 
 class Home extends React.Component {
 
-    disconnect = (e) => {
+    logout = (e) => {
         e.preventDefault();
         auth.signOut();
     }
@@ -17,7 +18,8 @@ class Home extends React.Component {
         return (
             <div>
                 <p>hello {user.username}</p>
-                <Button color='primary' variant='contained' onClick={this.disconnect}>Deconnection</Button>
+                <Button color='primary' variant='contained' onClick={this.logout}>Deconnection</Button>
+                <Link to='/profile'>Mon profil</Link>
             </div>
         );
     }
