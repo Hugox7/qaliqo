@@ -1,22 +1,39 @@
 #profile {
-    height: 100%;
-    background: linear-gradient(to bottom right, #F0E1CF, #F3BFB5 );
-    display:flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    padding-top: 130px;
 
 }
 
 .profile-content {
-    background-color: white;
     min-height: 700px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#top-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color: #E7647E;
+    width: 100%;
+}
+
+#sub-infos {
+    width: 100%;
+    padding: 10px;
 }
 
 #profile-header {
-    min-height: 60px;
-    padding: 5px 15px;
+    height: 30px;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: #E7647E; 
     color: white;
     display: flex;
@@ -38,14 +55,6 @@
 #profile-header .MuiButtonBase-root:hover {
     background-color: white;
     color: #E7647E;
-}
-
-.content-part {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 10px;
 }
 
 .subpart {

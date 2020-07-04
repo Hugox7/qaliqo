@@ -3,9 +3,9 @@ import { Button, Avatar, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { withStyles } from '@material-ui/core/styles'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload'
-import { DropzoneArea } from 'material-ui-dropzone'
+import { withStyles } from '@material-ui/core/styles';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import BackSpaceIcon from '@material-ui/icons/Backspace';
 
 import './myProfile.css';
 import { uploadProfilPic } from '../config/firebase';
@@ -14,8 +14,9 @@ import * as listenerTypes from '../store/types/listener';
 
 const styles = theme => ({
     large: {
-        width: theme.spacing(12),
-        height: theme.spacing(12),
+        width: theme.spacing(18),
+        height: theme.spacing(18),
+        marginTop: '25px',
     },
 })
 
@@ -79,13 +80,39 @@ class MyProfile extends React.Component {
     render() {
 
         const { user } = this.props.context;
-        const { classes } = this.props
+        const { classes } = this.props;
         console.log(this.props);
 
         return (
             <div id='profile'>
-                <Grid container>
-                    <Grid item xl={2} lg={2} md={1} sm={12} xs={12} />
+            
+                <div id='profile-header'>
+                    <h5>Mon profil</h5>
+                    <Button 
+                        onClick={this.backHome} 
+                        size='small' 
+                        variant='contained' 
+                        color='primary' 
+                        startIcon={<BackSpaceIcon />}
+                    >
+                        Accueil
+                    </Button>
+                </div>
+
+                <Grid container justify='center'>
+                    <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+                        <div className='profile-content'>
+                            1
+                        </div>
+                    </Grid>
+                    <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+                        <div className='profile-content'>
+                            2
+                        </div>
+                    </Grid>
+                </Grid>
+
+                    {/* <Grid item xl={2} lg={2} md={1} sm={12} xs={12} />
                     <Grid item xl={8} lg={8} md={10} sm={12} xs={12} >
                         <div className='profile-content'>
                             <div id='profile-header'>
@@ -113,8 +140,10 @@ class MyProfile extends React.Component {
                                 <LinearProgress variant="determinate" value={this.state.progress} />
                             </div>
                         </div>
-                    </Grid>
-                </Grid>     
+                    </Grid> */}
+
+
+                     
             </div>
         );
     } 
